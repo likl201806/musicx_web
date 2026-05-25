@@ -5,7 +5,7 @@
     <meta name="google-site-verification" content="8qtDSqWj9ScT3huChwvz9wplasJRlre5HIWPCFGGv3Q" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicX — Private Cloud Music & Video Player</title>
+    <title>MusicX - Private Cloud Music Player</title>
     <style>
         * {
             margin: 0;
@@ -16,56 +16,115 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #191919;
+            background: #f2f3f8;
             min-height: 100vh;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1120px;
             margin: 0 auto;
             padding: 20px;
         }
 
         header {
-            text-align: center;
-            padding: 60px 20px 40px;
-            color: white;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 320px;
+            align-items: center;
+            gap: 46px;
+            padding: 54px 0 38px;
         }
 
         h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 4rem;
+            line-height: 1;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: 0;
         }
 
         .subtitle {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            margin-bottom: 30px;
+            font-size: 1.35rem;
+            color: #4d4f58;
+            margin-bottom: 26px;
+            max-width: 620px;
         }
 
         .platform-badges {
             display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .badge {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 20px;
+            background: #fff;
+            padding: 8px 18px;
+            border-radius: 999px;
             font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid #dedfe6;
+            color: #5a5d66;
+        }
+
+        .brand-mark {
+            width: 126px;
+            height: 126px;
+            border-radius: 30px;
+            display: block;
+            box-shadow: 0 22px 60px rgba(255, 89, 24, 0.28);
+            margin-bottom: 22px;
+        }
+
+        .hero-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 18px;
+            box-shadow: 0 24px 70px rgba(31, 34, 42, 0.13);
+        }
+
+        .hero-card img {
+            width: 100%;
+            display: block;
+            border-radius: 18px;
+        }
+
+        .hero-kicker {
+            color: #ff560f;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 22px;
+            border-radius: 999px;
+            border: 1px solid #dedfe6;
+            background: #fff;
+            color: #191919;
+            font-weight: 700;
+        }
+
+        .button.primary {
+            background: #ff560f;
+            border-color: #ff560f;
+            color: #fff;
         }
 
         .main-content {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(31, 34, 42, 0.09);
             padding: 40px;
             margin-bottom: 30px;
         }
@@ -79,11 +138,11 @@
         }
 
         h2 {
-            color: #667eea;
+            color: #191919;
             font-size: 1.8rem;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid #ff560f;
         }
 
         .features-grid {
@@ -94,16 +153,16 @@
         }
 
         .feature-item {
-            background: #f8f9ff;
+            background: #f8f8fb;
             padding: 20px;
             border-radius: 10px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #ff560f;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .feature-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 86, 15, 0.16);
         }
 
         .feature-item::before {
@@ -111,12 +170,44 @@
             display: inline-block;
             width: 24px;
             height: 24px;
-            background: #667eea;
+            background: #ff560f;
             color: white;
             border-radius: 50%;
             text-align: center;
             margin-right: 10px;
             font-weight: bold;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .screenshot-card {
+            background: #f8f8fb;
+            border: 1px solid #e4e5ec;
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 14px 36px rgba(31, 34, 42, 0.12);
+            margin-bottom: 16px;
+        }
+
+        .screenshot-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .screenshot-card p {
+            color: #666a73;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .disclaimer {
@@ -133,7 +224,7 @@
 
         .info-box {
             background: #e7f3ff;
-            border-left: 4px solid #2196F3;
+            border-left: 4px solid #2f80ed;
             padding: 15px 20px;
             border-radius: 5px;
             margin-top: 15px;
@@ -141,7 +232,7 @@
 
         .status-badge {
             display: inline-block;
-            background: #ff9800;
+            background: #ff560f;
             color: white;
             padding: 5px 15px;
             border-radius: 20px;
@@ -153,12 +244,11 @@
         footer {
             text-align: center;
             padding: 30px 20px;
-            color: white;
+            color: #5a5d66;
         }
 
         .contact {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             display: inline-block;
@@ -166,28 +256,51 @@
         }
 
         a {
-            color: #667eea;
+            color: #ff560f;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         a:hover {
-            color: #764ba2;
+            color: #c93e00;
             text-decoration: underline;
         }
 
         footer a {
-            color: white;
+            color: #ff560f;
         }
 
         footer a:hover {
-            color: #ffd700;
+            color: #c93e00;
+        }
+
+        @media (max-width: 960px) {
+            header {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card {
+                max-width: 360px;
+                margin: 0 auto;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 14px;
+            }
+
+            header {
+                padding: 34px 0 26px;
+            }
+
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.75rem;
             }
 
             .subtitle {
@@ -206,6 +319,10 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -213,38 +330,75 @@
 <body>
     <div class="container">
         <header>
-            <h1>MusicX</h1>
-            <p class="subtitle">Private Cloud Music & Video Player</p>
-            <div class="platform-badges">
-                <span class="badge">📱 iOS</span>
-                <span class="badge">🤖 Android</span>
+            <div>
+                <img class="brand-mark" src="assets/musicx-logo.png" alt="MusicX app logo">
+                <p class="hero-kicker">Private cloud music player</p>
+                <h1>MusicX</h1>
+                <p class="subtitle">Organize local songs, connect cloud drives, create AI music, and transfer files over Wi-Fi from one focused mobile app.</p>
+                <div class="platform-badges">
+                    <span class="badge">iOS</span>
+                    <span class="badge">Android</span>
+                    <span class="badge">Local first</span>
+                </div>
+                <div class="hero-actions">
+                    <a class="button primary" href="#screenshots">View Screenshots</a>
+                    <a class="button" href="support.html">Support</a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <img src="assets/screenshot-library.png" alt="MusicX local library screen">
             </div>
         </header>
 
         <div class="main-content">
             <section id="overview">
                 <h2>Overview</h2>
-                <p>MusicX is a private cloud music & video player for iOS and Android. It helps you organize and play
-                    your own media library from local storage and supported cloud/self-hosted sources.</p>
+                <p>MusicX is a private cloud music player for iOS and Android. It helps you organize and play your own audio library from local storage, connected cloud drives, and supported self-hosted sources.</p>
             </section>
 
             <section id="features">
                 <h2>Key Features</h2>
                 <div class="features-grid">
-                    <div class="feature-item">Audio & video playback in a unified player screen</div>
-                    <div class="feature-item">Local library management (including folders)</div>
-                    <div class="feature-item">Wi-Fi transfer (local network)</div>
-                    <div class="feature-item">Optional iCloud Drive storage for notes and bookmarks</div>
-                    <div class="feature-item">Built-in browser (with user-initiated import actions)</div>
-                    <div class="feature-item">Optional Last.fm login for scrobbling and music history</div>
+                    <div class="feature-item">Local music library with songs, recent plays, and recent additions</div>
+                    <div class="feature-item">Cloud drive connections for browsing and playing your own music files</div>
+                    <div class="feature-item">AI music creation workflow with local saving and cloud upload</div>
+                    <div class="feature-item">Wi-Fi transfer for moving music between your phone and computer</div>
+                    <div class="feature-item">Appearance, language, cloud account, and AI service settings</div>
+                    <div class="feature-item">Optional Last.fm login for scrobbling and listening history</div>
+                </div>
+            </section>
+
+            <section id="screenshots">
+                <h2>App Screenshots</h2>
+                <div class="screenshots-grid">
+                    <article class="screenshot-card">
+                        <img src="assets/screenshot-library.png" alt="MusicX Library screen showing local songs">
+                        <h3>Library</h3>
+                        <p>Browse local songs, recent playback, recent additions, folders, albums, artists, and playlists.</p>
+                    </article>
+                    <article class="screenshot-card">
+                        <img src="assets/screenshot-cloud.png" alt="MusicX Cloud screen showing connected Dropbox account">
+                        <h3>Cloud</h3>
+                        <p>Connect cloud drives, review transfer tasks, and quickly return to recently accessed folders.</p>
+                    </article>
+                    <article class="screenshot-card">
+                        <img src="assets/screenshot-create.png" alt="MusicX Create screen showing generated works">
+                        <h3>Create</h3>
+                        <p>Keep generated works organized, play results, save them locally, or upload them to cloud storage.</p>
+                    </article>
+                    <article class="screenshot-card">
+                        <img src="assets/screenshot-settings.png" alt="MusicX Settings screen showing appearance and Wi-Fi transfer settings">
+                        <h3>Settings</h3>
+                        <p>Manage theme, language, cloud accounts, Wi-Fi transfer, and AI service configuration.</p>
+                    </article>
                 </div>
             </section>
 
             <section id="disclaimer">
                 <h2>What MusicX is NOT</h2>
                 <div class="disclaimer">
-                    <p><strong>⚠️ MusicX does not provide or host copyrighted content.</strong></p>
-                    <p><strong>⚠️ MusicX is designed to manage content that users own or have rights to access.</strong>
+                    <p><strong>MusicX does not provide or host copyrighted content.</strong></p>
+                    <p><strong>MusicX is designed to manage content that users own or have rights to access.</strong>
                     </p>
                 </div>
             </section>
@@ -253,8 +407,8 @@
                 <h2>Legal</h2>
                 <div class="info-box">
                     <p>Please read our policies:</p>
-                    <p><a href="privacy-policy.html">📄 Privacy Policy</a> | <a href="terms-of-service.html">📋 Terms of
-                            Service</a> | <a href="support.html">🛟 Technical Support</a></p>
+                    <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of
+                            Service</a> | <a href="support.html">Technical Support</a></p>
                 </div>
             </section>
 
@@ -267,7 +421,7 @@
             <section id="contact">
                 <h2>Support / Contact</h2>
                 <p>For any questions or suggestions, please contact us:</p>
-                <p style="margin-top: 10px;">📧 Email: <a href="mailto:kylele2089@gmail.com">kylele2089@gmail.com</a>
+                <p style="margin-top: 10px;">📧 Email: <a href="mailto:dec12230713@163.com">dec12230713@163.com</a>
                 </p>
                 <p style="margin-top: 10px;">🛟 Support: <a href="support.html">Technical Support Website</a></p>
             </section>

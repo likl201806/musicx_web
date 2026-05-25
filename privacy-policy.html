@@ -14,58 +14,63 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #191919;
+            background: #f2f3f8;
             min-height: 100vh;
             padding: 20px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
         }
 
         .back-button {
-            display: inline-block;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            min-height: 42px;
+            color: #191919;
             text-decoration: none;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            padding: 0 18px;
+            background: #fff;
+            border-radius: 999px;
             margin-bottom: 20px;
-            transition: background 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: border-color 0.3s ease, color 0.3s ease;
+            border: 1px solid #dedfe6;
+            font-weight: 700;
         }
 
         .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            color: #ff560f;
+            border-color: #ff560f;
+            text-decoration: none;
         }
 
         .content {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(31, 34, 42, 0.09);
             padding: 50px;
         }
 
         h1 {
-            color: #667eea;
+            color: #191919;
             font-size: 2.5rem;
             margin-bottom: 10px;
             padding-bottom: 15px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid #ff560f;
+            letter-spacing: 0;
         }
 
         .last-updated {
-            color: #666;
+            color: #666a73;
             font-size: 0.95rem;
             margin-bottom: 30px;
             font-style: italic;
         }
 
         h2 {
-            color: #667eea;
+            color: #191919;
             font-size: 1.5rem;
             margin-top: 35px;
             margin-bottom: 15px;
@@ -77,7 +82,7 @@
 
         p {
             margin-bottom: 15px;
-            color: #444;
+            color: #4d4f58;
         }
 
         ul {
@@ -87,11 +92,11 @@
 
         li {
             margin-bottom: 8px;
-            color: #444;
+            color: #4d4f58;
         }
 
         strong {
-            color: #333;
+            color: #191919;
         }
 
         .section {
@@ -99,20 +104,20 @@
         }
 
         a {
-            color: #667eea;
+            color: #ff560f;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         a:hover {
-            color: #764ba2;
+            color: #c93e00;
             text-decoration: underline;
         }
 
         .highlight-box {
-            background: #f8f9ff;
-            border-left: 4px solid #667eea;
+            background: #f8f8fb;
+            border-left: 4px solid #ff560f;
             padding: 15px 20px;
             margin: 20px 0;
             border-radius: 5px;
@@ -154,23 +159,13 @@
                 <p>Depending on features you use, MusicX may handle the following data:</p>
                 <ul>
                     <li><strong>Local library data (on-device):</strong> file names, folder structure, playlists, playback state, and metadata needed to play your media.</li>
-                    <li><strong>Notes & bookmarks (user content):</strong> URLs, text notes, and user-saved items you create inside the app.</li>
-                    <li><strong>Imported links (user initiated):</strong> links you explicitly share/open with MusicX (e.g., from Safari Share Sheet).</li>
+                    <li><strong>Cloud connection data:</strong> server addresses, account identifiers, tokens, and credentials you provide for supported cloud or self-hosted storage services.</li>
+                    <li><strong>Generated music records:</strong> prompts, result titles, playback state, and file references needed to manage AI-created works inside the app.</li>
                 </ul>
             </div>
 
             <div class="section">
-                <h2>3. iCloud Drive Storage (Optional)</h2>
-                <p>MusicX may offer an option to store notes/bookmarks in iCloud Drive.</p>
-                <ul>
-                    <li>If you enable iCloud Drive storage, your notes/bookmarks will be stored in your iCloud Drive and synchronized by Apple.</li>
-                    <li>If you disable it, the same data will be stored locally on your device.</li>
-                    <li>Your iCloud account is managed by Apple; MusicX does not access your Apple ID password.</li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h2>4. Last.fm Integration (Optional)</h2>
+                <h2>3. Last.fm Integration (Optional)</h2>
                 <p>If you choose to log in to Last.fm inside MusicX:</p>
                 <ul>
                     <li>MusicX will use Last.fm authentication to access your Last.fm account as needed for features such as scrobbling.</li>
@@ -180,7 +175,7 @@
             </div>
 
             <div class="section">
-                <h2>5. Cloud / Self-hosted Sources (Optional)</h2>
+                <h2>4. Cloud / Self-hosted Sources (Optional)</h2>
                 <p>MusicX may allow you to connect to supported cloud providers or self-hosted services (e.g., WebDAV/SMB or other services).</p>
                 <ul>
                     <li>Connection details you enter (server address, username, password, tokens) are used to connect to the service you specify.</li>
@@ -190,17 +185,7 @@
             </div>
 
             <div class="section">
-                <h2>6. Built-in Browser & Link Detection</h2>
-                <p>MusicX may include a built-in browser and optional detection of playable media links.</p>
-                <ul>
-                    <li>Any "import/save" action is user-initiated.</li>
-                    <li>MusicX does not modify third-party websites.</li>
-                    <li>MusicX only saves links/content when you explicitly confirm.</li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h2>7. Permissions</h2>
+                <h2>5. Permissions</h2>
                 <p>Depending on your device and features used, MusicX may request permissions such as:</p>
                 <ul>
                     <li>Local storage / media library access (to play and manage your files)</li>
@@ -211,7 +196,7 @@
             </div>
 
             <div class="section">
-                <h2>8. Analytics & Advertising</h2>
+                <h2>6. Analytics & Advertising</h2>
                 <ul>
                     <li>MusicX does not display third-party ads by default.</li>
                     <li>MusicX does not intentionally collect sensitive personal data such as your contacts, SMS, or precise location.</li>
@@ -219,28 +204,28 @@
             </div>
 
             <div class="section">
-                <h2>9. Data Retention & Deletion</h2>
+                <h2>7. Data Retention & Deletion</h2>
                 <ul>
-                    <li><strong>On-device data:</strong> you can delete notes and local library data within the app or by uninstalling MusicX.</li>
-                    <li><strong>iCloud data:</strong> if stored in iCloud Drive, you can delete files from iCloud Drive.</li>
+                    <li><strong>On-device data:</strong> you can delete local library data and generated music records within the app or by uninstalling MusicX.</li>
+                    <li><strong>Cloud files:</strong> files stored in connected third-party services remain controlled by those services and can be deleted through their own apps or websites.</li>
                     <li><strong>Third-party services:</strong> data sent to third parties (e.g., Last.fm scrobbles) is subject to those parties' retention policies.</li>
                 </ul>
             </div>
 
             <div class="section">
-                <h2>10. Children's Privacy</h2>
+                <h2>8. Children's Privacy</h2>
                 <p>MusicX is not directed to children under 13. We do not knowingly collect personal data from children.</p>
             </div>
 
             <div class="section">
-                <h2>11. Changes to This Policy</h2>
+                <h2>9. Changes to This Policy</h2>
                 <p>We may update this policy from time to time. We will update the "Last Updated" date above.</p>
             </div>
 
             <div class="section">
-                <h2>12. Contact</h2>
+                <h2>10. Contact</h2>
                 <p>If you have questions about this Privacy Policy, contact:</p>
-                <p><strong>Email:</strong> <a href="mailto:kylele2089@gmail.com">kylele2089@gmail.com</a></p>
+                <p><strong>Email:</strong> <a href="mailto:dec12230713@163.com">dec12230713@163.com</a></p>
                 <p><strong>Support:</strong> <a href="support.html">Technical Support Website</a></p>
             </div>
         </div>

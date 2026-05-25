@@ -14,58 +14,63 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #191919;
+            background: #f2f3f8;
             min-height: 100vh;
             padding: 20px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
         }
 
         .back-button {
-            display: inline-block;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            min-height: 42px;
+            color: #191919;
             text-decoration: none;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            padding: 0 18px;
+            background: #fff;
+            border-radius: 999px;
             margin-bottom: 20px;
-            transition: background 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: border-color 0.3s ease, color 0.3s ease;
+            border: 1px solid #dedfe6;
+            font-weight: 700;
         }
 
         .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            color: #ff560f;
+            border-color: #ff560f;
+            text-decoration: none;
         }
 
         .content {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(31, 34, 42, 0.09);
             padding: 50px;
         }
 
         h1 {
-            color: #667eea;
+            color: #191919;
             font-size: 2.5rem;
             margin-bottom: 10px;
             padding-bottom: 15px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid #ff560f;
+            letter-spacing: 0;
         }
 
         .last-updated {
-            color: #666;
+            color: #666a73;
             font-size: 0.95rem;
             margin-bottom: 30px;
             font-style: italic;
         }
 
         h2 {
-            color: #667eea;
+            color: #191919;
             font-size: 1.5rem;
             margin-top: 35px;
             margin-bottom: 15px;
@@ -77,7 +82,7 @@
 
         p {
             margin-bottom: 15px;
-            color: #444;
+            color: #4d4f58;
         }
 
         ul {
@@ -87,11 +92,11 @@
 
         li {
             margin-bottom: 8px;
-            color: #444;
+            color: #4d4f58;
         }
 
         strong {
-            color: #333;
+            color: #191919;
         }
 
         .section {
@@ -99,20 +104,20 @@
         }
 
         a {
-            color: #667eea;
+            color: #ff560f;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         a:hover {
-            color: #764ba2;
+            color: #c93e00;
             text-decoration: underline;
         }
 
         .highlight-box {
-            background: #f8f9ff;
-            border-left: 4px solid #667eea;
+            background: #f8f8fb;
+            border-left: 4px solid #ff560f;
             padding: 15px 20px;
             margin: 20px 0;
             border-radius: 5px;
@@ -175,7 +180,7 @@
                 <p>You are solely responsible for the content you access, import, store, or play using MusicX.</p>
                 <p>You agree that:</p>
                 <ul>
-                    <li>You own or have the legal rights to use any media files, links, or content you manage with the App.</li>
+                    <li>You own or have the legal rights to use any media files or content you manage with the App.</li>
                     <li>You will not use MusicX to access, store, or distribute content in violation of applicable copyright or other laws.</li>
                 </ul>
                 <p>MusicX does not monitor, review, or control user content.</p>
@@ -193,27 +198,20 @@
             </div>
 
             <div class="section">
-                <h2>6. Built-in Browser and Imports</h2>
-                <p>MusicX may include a built-in browser or link detection features.</p>
-                <p>All import or save actions are user-initiated.</p>
-                <p>MusicX does not modify third-party websites and does not automatically download or save content without your explicit action.</p>
-            </div>
-
-            <div class="section">
-                <h2>7. Privacy</h2>
+                <h2>6. Privacy</h2>
                 <p>Your privacy is important to us.</p>
                 <p>Please review our <a href="privacy-policy.html">Privacy Policy</a>, which explains how data is handled when you use MusicX.</p>
                 <p>By using the App, you agree to the practices described in the Privacy Policy.</p>
             </div>
 
             <div class="section">
-                <h2>8. Intellectual Property</h2>
+                <h2>7. Intellectual Property</h2>
                 <p>The MusicX name, logo, app design, and software are owned by the developer of MusicX and are protected by applicable intellectual property laws.</p>
                 <p>You may not copy, modify, distribute, sell, or reverse-engineer any part of the App except as permitted by law.</p>
             </div>
 
             <div class="section">
-                <h2>9. Disclaimer of Warranties</h2>
+                <h2>8. Disclaimer of Warranties</h2>
                 <div class="warning-box">
                     <p><strong>MusicX is provided on an "as is" and "as available" basis.</strong></p>
                 </div>
@@ -226,33 +224,33 @@
             </div>
 
             <div class="section">
-                <h2>10. Limitation of Liability</h2>
+                <h2>9. Limitation of Liability</h2>
                 <p>To the maximum extent permitted by law, MusicX and its developer shall not be liable for any indirect, incidental, special, or consequential damages arising out of or related to your use of the App.</p>
                 <p>Your use of MusicX is at your own risk.</p>
             </div>
 
             <div class="section">
-                <h2>11. Termination</h2>
+                <h2>10. Termination</h2>
                 <p>We may suspend or terminate access to MusicX at any time if you violate these Terms or if required by law.</p>
                 <p>You may stop using the App at any time by uninstalling it.</p>
             </div>
 
             <div class="section">
-                <h2>12. Changes to These Terms</h2>
+                <h2>11. Changes to These Terms</h2>
                 <p>We may update these Terms from time to time.</p>
                 <p>Changes will be reflected by updating the "Last Updated" date above.</p>
                 <p>Continued use of MusicX after changes means you accept the updated Terms.</p>
             </div>
 
             <div class="section">
-                <h2>13. Governing Law</h2>
+                <h2>12. Governing Law</h2>
                 <p>These Terms shall be governed by and interpreted in accordance with applicable laws, without regard to conflict-of-law principles.</p>
             </div>
 
             <div class="section">
-                <h2>14. Contact</h2>
+                <h2>13. Contact</h2>
                 <p>If you have any questions about these Terms of Service, please contact:</p>
-                <p><strong>Email:</strong> <a href="mailto:kylele2089@gmail.com">kylele2089@gmail.com</a></p>
+                <p><strong>Email:</strong> <a href="mailto:dec12230713@163.com">dec12230713@163.com</a></p>
                 <p><strong>Support:</strong> <a href="support.html">Technical Support Website</a></p>
             </div>
         </div>
