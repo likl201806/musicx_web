@@ -29,6 +29,7 @@
             display: flex;
             gap: 8px;
             justify-content: center;
+            flex-wrap: wrap;
             margin-bottom: 16px;
         }
 
@@ -172,13 +173,18 @@
 <body>
     <div class="container">
         <div class="lang-switcher">
-            <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
-            <button class="lang-btn" data-lang="zh" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn" data-lang="en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" data-lang="zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" data-lang="zh-Hant" onclick="switchLang('zh-Hant')">繁體中文</button>
             <button class="lang-btn" data-lang="ja" onclick="switchLang('ja')">日本語</button>
-            <button class="lang-btn" data-lang="ru" onclick="switchLang('ru')">RU</button>
+            <button class="lang-btn" data-lang="ru" onclick="switchLang('ru')">Русский</button>
+            <button class="lang-btn" data-lang="es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" data-lang="pt" onclick="switchLang('pt')">Português</button>
+            <button class="lang-btn" data-lang="fr" onclick="switchLang('fr')">Français</button>
+            <button class="lang-btn" data-lang="de" onclick="switchLang('de')">Deutsch</button>
         </div>
 
-        <div class="header">
+<div class="header">
             <h1 id="title">Yandex.Disk WebDAV Configuration</h1>
             <p class="subtitle" id="subtitle">Cloud storage service by Yandex</p>
         </div>
@@ -460,6 +466,7 @@
             switchLang(savedLang);
         };
     </script>
+    <script src="../assets/site-i18n.js"></script>
 </body>
 
 </html>

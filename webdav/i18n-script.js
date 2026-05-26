@@ -1,8 +1,10 @@
 // 通用的语言检测和切换函数
 function detectLanguage() {
     const browserLang = navigator.language || navigator.userLanguage;
-    const langCode = browserLang.toLowerCase().split('-')[0];
-    const supportedLangs = ['en', 'zh', 'ja', 'ru'];
+    const normalized = (browserLang || 'en').toLowerCase();
+    if (['zh-tw', 'zh-hk', 'zh-mo', 'zh-hant'].includes(normalized)) return 'zh-Hant';
+    const langCode = normalized.split('-')[0];
+    const supportedLangs = ['en', 'zh', 'zh-Hant', 'ja', 'ru', 'es', 'pt', 'fr', 'de'];
     return supportedLangs.includes(langCode) ? langCode : 'en';
 }
 
@@ -34,7 +36,7 @@ function applyTranslations(translations, lang) {
     
     // 更新语言按钮状态
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    const activeBtn = document.querySelector(`[onclick="switchLang('${lang}')"]`);
+    const activeBtn = document.querySelector(`.lang-btn[data-lang="${lang}"]`) || document.querySelector(`[onclick="switchLang('${lang}')"]`);
     if (activeBtn) activeBtn.classList.add('active');
     
     // 保存语言偏好

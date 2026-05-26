@@ -275,6 +275,11 @@
             color: #c93e00;
         }
 
+        .lang-switcher { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 6px 0 18px; }
+        .lang-btn { background: #fff; border: 1px solid #dedfe6; color: #5a5d66; padding: 6px 14px; border-radius: 999px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; font-weight: 500; }
+        .lang-btn:hover { color: #ff560f; border-color: #ff560f; }
+        .lang-btn.active { background: #ff560f; border-color: #ff560f; color: #fff; font-weight: 700; }
+
         @media (max-width: 960px) {
             header {
                 grid-template-columns: 1fr;
@@ -329,7 +334,19 @@
 
 <body>
     <div class="container">
-        <header>
+        <div class="lang-switcher">
+            <button class="lang-btn" data-lang="en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" data-lang="zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" data-lang="zh-Hant" onclick="switchLang('zh-Hant')">繁體中文</button>
+            <button class="lang-btn" data-lang="ja" onclick="switchLang('ja')">日本語</button>
+            <button class="lang-btn" data-lang="ru" onclick="switchLang('ru')">Русский</button>
+            <button class="lang-btn" data-lang="es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" data-lang="pt" onclick="switchLang('pt')">Português</button>
+            <button class="lang-btn" data-lang="fr" onclick="switchLang('fr')">Français</button>
+            <button class="lang-btn" data-lang="de" onclick="switchLang('de')">Deutsch</button>
+        </div>
+
+<header>
             <div>
                 <img class="brand-mark" src="assets/musicx-logo.png" alt="MusicX app logo">
                 <p class="hero-kicker">Private cloud music player</p>
@@ -434,6 +451,7 @@
             </div>
         </footer>
     </div>
+    <script src="assets/site-i18n.js"></script>
 </body>
 
 </html>
