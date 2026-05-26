@@ -14,6 +14,8 @@
 
     const path = location.pathname.split('/').pop() || 'index.html';
     const isWebdav = location.pathname.includes('/webdav/');
+    const SWITCHER_STYLE_ID = 'site-lang-switcher-style';
+    let switcherEventsBound = false;
 
     function norm(lang) {
         const raw = String(lang || 'en').toLowerCase().replace('_', '-');
@@ -36,6 +38,137 @@
         try { localStorage.setItem(STORAGE_KEY, lang); } catch (_) {}
     }
 
+    function langLabel(lang) {
+        const item = LANGS.find(([code]) => code === norm(lang));
+        return item ? item[1] : LANGS[0][1];
+    }
+
+    function injectSwitcherStyles() {
+        if (document.getElementById(SWITCHER_STYLE_ID)) return;
+        const style = document.createElement('style');
+        style.id = SWITCHER_STYLE_ID;
+        style.textContent = `
+            .lang-switcher.lang-switcher--fixed {
+                position: fixed;
+                top: max(12px, env(safe-area-inset-top));
+                right: max(12px, env(safe-area-inset-right));
+                z-index: 9999;
+                display: block;
+                margin: 0;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            }
+
+            .lang-switcher.lang-switcher--fixed .lang-toggle {
+                min-height: 42px;
+                padding: 0 16px;
+                border: 1px solid rgba(222, 223, 230, 0.95);
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.94);
+                color: #191919;
+                box-shadow: 0 12px 34px rgba(31, 34, 42, 0.16);
+                cursor: pointer;
+                font-size: 0.95rem;
+                font-weight: 700;
+                -webkit-backdrop-filter: blur(12px);
+                backdrop-filter: blur(12px);
+            }
+
+            .lang-switcher.lang-switcher--fixed .lang-toggle::after {
+                content: "▾";
+                margin-left: 8px;
+                color: #ff560f;
+                font-size: 0.8rem;
+            }
+
+            .lang-switcher.lang-switcher--fixed.open .lang-toggle::after {
+                content: "▴";
+            }
+
+            .lang-switcher.lang-switcher--fixed .lang-menu {
+                position: absolute;
+                top: calc(100% + 8px);
+                right: 0;
+                min-width: 180px;
+                max-height: min(70vh, 360px);
+                overflow-y: auto;
+                padding: 8px;
+                border: 1px solid #e4e5ec;
+                border-radius: 18px;
+                background: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 24px 70px rgba(31, 34, 42, 0.2);
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-6px);
+                transition: opacity 0.18s ease, transform 0.18s ease;
+                -webkit-backdrop-filter: blur(16px);
+                backdrop-filter: blur(16px);
+            }
+
+            .lang-switcher.lang-switcher--fixed.open .lang-menu {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+
+            .lang-switcher.lang-switcher--fixed .lang-btn {
+                display: block;
+                width: 100%;
+                min-height: 40px;
+                margin: 0;
+                padding: 0 12px;
+                border: 0;
+                border-radius: 12px;
+                background: transparent;
+                color: #4d4f58;
+                cursor: pointer;
+                font-size: 0.95rem;
+                font-weight: 600;
+                text-align: left;
+                transition: background 0.16s ease, color 0.16s ease;
+            }
+
+            .lang-switcher.lang-switcher--fixed .lang-btn:hover {
+                background: #fff3ed;
+                color: #ff560f;
+            }
+
+            .lang-switcher.lang-switcher--fixed .lang-btn.active {
+                background: #ff560f;
+                color: #fff;
+            }
+
+            @media (max-width: 768px) {
+                .lang-switcher.lang-switcher--fixed {
+                    top: max(10px, env(safe-area-inset-top));
+                    right: max(10px, env(safe-area-inset-right));
+                }
+
+                .lang-switcher.lang-switcher--fixed .lang-toggle {
+                    min-height: 40px;
+                    padding: 0 13px;
+                    font-size: 0.9rem;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    function setSwitcherOpen(switcher, open) {
+        if (!switcher) return;
+        switcher.classList.toggle('open', open);
+        const toggle = switcher.querySelector('.lang-toggle');
+        if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    function bindSwitcherEvents() {
+        if (switcherEventsBound) return;
+        switcherEventsBound = true;
+        document.addEventListener('click', () => setSwitcherOpen(document.querySelector('.lang-switcher'), false));
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') setSwitcherOpen(document.querySelector('.lang-switcher'), false);
+        });
+    }
+
     function txt(selector, value, root = document) {
         const el = root.querySelector(selector);
         if (el && value != null) el.textContent = value;
@@ -53,29 +186,59 @@
     }
 
     function ensureSwitcher() {
+        injectSwitcherStyles();
+        bindSwitcherEvents();
         let switcher = document.querySelector('.lang-switcher');
-        const container = document.querySelector('.container') || document.body;
         if (!switcher) {
             switcher = document.createElement('div');
-            switcher.className = 'lang-switcher';
-            container.insertBefore(switcher, container.firstChild);
+            document.body.appendChild(switcher);
+        } else if (switcher.parentElement !== document.body) {
+            document.body.appendChild(switcher);
         }
+        const current = norm(document.documentElement.lang || initialLang());
+        switcher.className = 'lang-switcher lang-switcher--fixed';
         switcher.innerHTML = '';
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'lang-toggle';
+        toggle.setAttribute('aria-haspopup', 'listbox');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Language');
+        toggle.textContent = langLabel(current);
+        toggle.addEventListener('click', event => {
+            event.stopPropagation();
+            setSwitcherOpen(switcher, !switcher.classList.contains('open'));
+        });
+        switcher.appendChild(toggle);
+
+        const menu = document.createElement('div');
+        menu.className = 'lang-menu';
+        menu.setAttribute('role', 'listbox');
+        menu.addEventListener('click', event => event.stopPropagation());
         LANGS.forEach(([code, label]) => {
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'lang-btn';
             btn.dataset.lang = code;
+            btn.setAttribute('role', 'option');
             btn.textContent = label;
-            btn.addEventListener('click', () => switchLang(code));
-            switcher.appendChild(btn);
+            btn.addEventListener('click', () => {
+                switchLang(code);
+                setSwitcherOpen(document.querySelector('.lang-switcher'), false);
+            });
+            menu.appendChild(btn);
         });
+        switcher.appendChild(menu);
     }
 
     function active(lang) {
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.lang === lang);
+            const isActive = btn.dataset.lang === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
         });
+        const toggle = document.querySelector('.lang-toggle');
+        if (toggle) toggle.textContent = langLabel(lang);
     }
 
     const common = {
