@@ -280,14 +280,49 @@
         .lang-btn:hover { color: #ff560f; border-color: #ff560f; }
         .lang-btn.active { background: #ff560f; border-color: #ff560f; color: #fff; font-weight: 700; }
 
-        @media (max-width: 960px) {
+        @media (max-width: 960px) and (min-width: 700px) {
+            .container {
+                padding: 22px 32px;
+            }
+
+            .lang-switcher:not(.lang-switcher--fixed) {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 0 110px 8px 0;
+                margin-bottom: 8px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .lang-switcher:not(.lang-switcher--fixed) .lang-btn {
+                flex: 0 0 auto;
+            }
+
             header {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr) 270px;
+                gap: 30px;
+                padding: 72px 0 34px;
+            }
+
+            h1 {
+                font-size: 3.25rem;
+            }
+
+            .subtitle {
+                font-size: 1.15rem;
+                max-width: 520px;
+            }
+
+            .brand-mark {
+                width: 112px;
+                height: 112px;
+                border-radius: 27px;
+                margin-bottom: 18px;
             }
 
             .hero-card {
-                max-width: 360px;
-                margin: 0 auto;
+                max-width: none;
+                padding: 14px;
             }
 
             .screenshots-grid {
@@ -295,21 +330,66 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 699px) {
             .container {
                 padding: 14px;
             }
 
+            .lang-switcher:not(.lang-switcher--fixed) {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 0 104px 8px 0;
+                margin-bottom: 4px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .lang-switcher:not(.lang-switcher--fixed) .lang-btn {
+                flex: 0 0 auto;
+            }
+
             header {
-                padding: 34px 0 26px;
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 92px 4px 28px;
             }
 
             h1 {
-                font-size: 2.75rem;
+                font-size: clamp(2.8rem, 13vw, 3.4rem);
+                margin-bottom: 18px;
             }
 
             .subtitle {
-                font-size: 1.1rem;
+                font-size: 1.14rem;
+                line-height: 1.58;
+                margin-bottom: 24px;
+            }
+
+            .brand-mark {
+                width: 112px;
+                height: 112px;
+                border-radius: 27px;
+                margin-bottom: 20px;
+            }
+
+            .hero-kicker {
+                margin-bottom: 10px;
+            }
+
+            .hero-actions {
+                gap: 12px;
+                margin-top: 28px;
+            }
+
+            .button {
+                min-height: 44px;
+                padding: 0 20px;
+            }
+
+            .hero-card {
+                max-width: 420px;
+                margin: 0 auto;
+                padding: 18px;
             }
 
             .main-content {
@@ -317,8 +397,11 @@
             }
 
             .platform-badges {
-                flex-direction: column;
-                align-items: center;
+                gap: 10px;
+            }
+
+            .badge {
+                padding: 7px 16px;
             }
 
             .features-grid {
